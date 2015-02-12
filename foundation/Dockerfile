@@ -31,13 +31,13 @@ RUN mkdir /opt/ottemo/foundation/media
 RUN wget https://github.com/ottemo/foundation-stable/releases/download/v0.9.4-preview/OttemoFoundation-v0.9.4-preview-linux-amd64.tar.gz
 RUN tar -xvzf OttemoFoundation-v0.9.4-preview-linux-amd64.tar.gz
 RUN mv /opt/ottemo/foundation/release/* /opt/ottemo/foundation
+ADD foundation.service /etc/systemd/system/foundation.service
 
 EXPOSE 3000
-
-CMD ["./foundation 2>/opt/ottemo/foundation/foundation.log & echo $1 > /opt/ottemo/foundation/foundation.pid"]
 
 VOLUME ["/sys/fs/cgroup"]
 VOLUME ["/run"]
 
+RUN systemctl enable foundation.service
 CMD  ["/usr/lib/systemd/systemd"]
 
