@@ -34,10 +34,12 @@ RUN mv /opt/ottemo/foundation/release/* /opt/ottemo/foundation
 ADD foundation.service /etc/systemd/system/foundation.service
 
 EXPOSE 3000
+EXPOSE 22
 
 VOLUME ["/sys/fs/cgroup"]
 VOLUME ["/run"]
 
+RUN systemctl enable sshd
 RUN systemctl enable foundation.service
 CMD  ["/usr/lib/systemd/systemd"]
 
