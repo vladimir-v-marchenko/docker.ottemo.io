@@ -1,0 +1,18 @@
+[Unit]
+Description=Foundation Ottemo Service
+Documentation=http://www.ottemo.io
+After=network.target
+
+[Service]
+Environment="FOUNDATIONHOME=/opt/ottemo/foundation"
+Environment="LOGFILE=/var/log/foundation.log"
+WorkingDirectory=/opt/ottemo/foundation
+Type=forking
+PIDFile=/run/foundation.pid
+ExecStart=/bin/bash -c "cd $FOUNDATIONHOME ; ./foundation &> $LOGFILE & echo \$1 > $PIDFile"
+ExecStop=/bin/kill -s QUIT $MAINPID
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
