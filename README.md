@@ -8,4 +8,4 @@ Docker Ottemo.io
     cd foundaton & docker build -t ottemo/foundation .
 
 3. Run ottemo/foundation container in privileged mode:
-    docker run --privileged -ti -v /sys/fs/cgroup:/sys/fs/cgroup:ro ottemo/foundation
+    docker run --privileged -ti -v /sys/fs/cgroup:/sys/fs/cgroup:ro --name foundation ottemo/foundation
