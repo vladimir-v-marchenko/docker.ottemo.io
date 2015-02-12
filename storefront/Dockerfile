@@ -37,7 +37,8 @@ RUN npm install -g gulp
 ENV FOUNDATION_URI=http://localhost:3000
 RUN gulp build
 RUN rm -f /etc/nginx/conf.d/default
-RUN cp ./config/store-ng.conf /etc/nginx/conf.d/
+RUN sed -i 's/80/8080/' /etc/nginx/nginx.conf
+RUN sed -i 's/\/usr\/share\/nginx\/html/\/opt\/ottemo\/storefront\/dist/' /etc/nginx/nginx.conf
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 EXPOSE 8080
