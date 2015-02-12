@@ -35,8 +35,8 @@ RUN npm install -g bower
 RUN yes | bower install --allow-root
 RUN npm install -g gulp
 RUN gulp build
-RUN rm -f /etc/nginx/sites-enabled/default
-ADD ./config/dashboard.conf /etc/nginx/conf.d/
+RUN rm -f /etc/nginx/conf.d/default
+RUN cp ./config/dashboard.conf /etc/nginx/conf.d/
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 EXPOSE 80
