@@ -33,6 +33,10 @@ RUN tar -xvzf OttemoFoundation-v0.9.4-preview-linux-amd64.tar.gz
 RUN mv /opt/ottemo/foundation/release/* /opt/ottemo/foundation
 ADD foundation.service /etc/systemd/system/foundation.service
 
+RUN mkdir /root/.ssh
+ADD container.id_rsa.pub /root/.ssh/authorized_keys
+RUN chmod 600 /root/.ssh/authorized_keys
+
 EXPOSE 3000
 EXPOSE 22
 
